@@ -2,7 +2,7 @@
 
 Date of the project: March 2022
 
-This is a small final project of the course Earth System Modelling that I took during my Master's degree. 
+This is a small final project of the course Earth System Modelling that I took during my Master in Environmental Sciences. 
 
 The project used an Earth System Model of Intermediate Complexity (EMIC) to assess the effect of permafrost thawing on the Earth’s energy balance. The project was based on the following research question: How will 50% permafrost thawing affect the energy balance of the earth, as it releases stored CO2 into the atmosphere and decreases land albedo?
 
