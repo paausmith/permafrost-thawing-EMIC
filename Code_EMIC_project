@@ -1,0 +1,33 @@
+#! /bin/env sh
+# This is the start of a script
+
+infile=$1
+
+echo ${infile}
+
+# Define variable to process (e.g. surface temperature 'ts')
+var1=ts
+#var2=rlut
+
+# Extract a geographical box: lon 0 to 180, lat 45 to 80 (Northern Hemisphere high latitudes)
+cdo -sellonlatbox,0.0,180,45,80 ${infile} ${infile}_zone.nc
+
+# Global and local means
+# 1. Select the variable ($var1),
+# 2. Select winter months (DJFM),
+# 3. Compute yearly means,
+# 4. Output to NetCDF file
+cdo -selvar,${var1} -yearmean -selmon,1,2,3,12 -meravg -zonavg ${infile}_zone.nc ${infile}_global_mean${var1}.nc
+cdo -selvar,${var1} -yearmean -selmon,1,2,3,12 ${infile} ${infile}_local_mean${var1}.nc
+
+# Extract metadata from global mean file and save to text
+cdo infop ${infile}_global_mean${var1}.nc > ${infile}_global_mean${var1}.txt
+# Extract metadata from local mean file and save to text
+cdo infop ${infile}_local_mean${var1}.nc > ${infile}_local_mean${var1}.txt
+
+
+# Record a sequence of actions, and then run this script with the command
+#
+# ./example_script.sh
+#
+
